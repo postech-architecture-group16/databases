@@ -29,9 +29,9 @@ resource "aws_db_instance" "order_db_postgres" {
   engine_version         = "13"
   instance_class         = "db.t3.micro"
   identifier             = "order-db"
-  db_name                = local.order_db_credentials["db_name"]
-  username               = local.order_db_credentials["username"]
-  password               = local.order_db_credentials["password"]
+  db_name                = local.tc_order_db_credentials["db_name"]
+  username               = local.tc_order_db_credentials["username"]
+  password               = local.tc_order_db_credentials["password"]
   parameter_group_name   = "default.postgres13"
   publicly_accessible    = false
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
@@ -42,7 +42,7 @@ resource "aws_db_instance" "order_db_postgres" {
   depends_on = [
     aws_security_group.rds_sg,
     aws_db_subnet_group.rds_subnet_group,
-    aws_secretsmanager_secret_version.order_db_credentials_secret_version
+    aws_secretsmanager_secret_version.tc_order_db_credentials_secret_version
   ]
 }
 
@@ -52,9 +52,9 @@ resource "aws_db_instance" "production_db_postgres" {
   engine_version         = "13"
   instance_class         = "db.t3.micro"
   identifier             = "production-db"
-  db_name                = local.production_db_credentials["db_name"]
-  username               = local.production_db_credentials["username"]
-  password               = local.production_db_credentials["password"]
+  db_name                = local.tc_production_db_credentials["db_name"]
+  username               = local.tc_production_db_credentials["username"]
+  password               = local.tc_production_db_credentials["password"]
   parameter_group_name   = "default.postgres13"
   publicly_accessible    = false
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
@@ -65,6 +65,6 @@ resource "aws_db_instance" "production_db_postgres" {
   depends_on = [
     aws_security_group.rds_sg,
     aws_db_subnet_group.rds_subnet_group,
-    aws_secretsmanager_secret_version.production_db_credentials_secret_version
+    aws_secretsmanager_secret_version.tc_production_db_credentials_secret_version
   ]
 }
