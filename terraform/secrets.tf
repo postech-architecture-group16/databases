@@ -25,15 +25,3 @@ resource "aws_secretsmanager_secret_version" "production_db_credentials_secret_v
 
   depends_on = [aws_secretsmanager_secret.production_db_credentials_secret]
 }
-
-data "aws_secretsmanager_secret_version" "order_db_credentials_secret_version" {
-  secret_id = aws_secretsmanager_secret.order_db_credentials_secret.id
-
-  depends_on = [aws_secretsmanager_secret_version.order_db_credentials_secret_version]
-}
-
-data "aws_secretsmanager_secret_version" "production_db_credentials_secret_version" {
-  secret_id = aws_secretsmanager_secret.production_db_credentials_secret.id
-
-  depends_on = [aws_secretsmanager_secret_version.production_db_credentials_secret_version]
-}
