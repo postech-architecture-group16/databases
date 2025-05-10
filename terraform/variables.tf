@@ -8,7 +8,7 @@ variable "order_db_credentials" {
   type = map(string)
   default = {
     username = "postgres"
-    password = "123456"
+    password = "postgres"
     db_name  = "postgres"
   }
 }
@@ -17,7 +17,7 @@ variable "production_db_credentials" {
   type = map(string)
   default = {
     username = "postgres"
-    password = "123456"
+    password = "postgres"
     db_name  = "postgres"
   }
 }
